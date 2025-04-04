@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Variable", "sans-serif";
+  --text-base: 22px;
+
+  --color-destiny-dark-grey: #595959;
+  --color-destiny-light-grey: #c6c5c5;
+  --color-destiny-text-grey: #979696;
+}
+
+body {
+  background: #000;
+  /* background: radial-gradient(at center top, #212121, #010101); */
+  color: var(--color-white);
+}
+
+[data-clipped]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  background: var(--color-white);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}

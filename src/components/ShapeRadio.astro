@@ -1,0 +1,22 @@
+---
+const { label, id, value, name, checked = false } = Astro.props;
+---
+
+<div class="flex h-auto">
+  <input
+    type="radio"
+    id={id}
+    name={name}
+    value={value}
+    class="hidden peer"
+    {checked}
+  />
+  <label
+    for={id}
+    title={label}
+    class="inline-flex items-center justify-between border cursor-pointer border-destiny-dark-grey peer-checked:border-white peer-checked:text-white text-destiny-dark-grey hover:outline-1 outline-offset-2 outline-white"
+  >
+    <span class="sr-only">{label}</span>
+    <slot />
+  </label>
+</div>

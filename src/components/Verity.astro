@@ -1,0 +1,131 @@
+---
+import { Image } from "astro:assets";
+import VerityShapes from "./VerityShapes.astro";
+import VerityModeRadio from "./VerityModeRadio.astro";
+
+import BackgroundVerity from "../assets/bg-verity.jpg";
+---
+
+<main class="relative min-h-screen">
+  <Image
+    src={BackgroundVerity}
+    alt=""
+    loading="eager"
+    class="absolute inset-0 object-cover h-full -z-10 opacity-15"
+  />
+  <div class="px-4 py-8 lg:px-12 xl:px-20 xl:py-16">
+    <div class="mx-auto">
+      <p class="text-xl tracking-widest uppercase">Salvation's Edge</p>
+      <h1 class="font-bold tracking-tight uppercase text-7xl">Verity Solver</h1>
+    </div>
+
+    <div class="mt-8">
+      <verity-solver>
+        <form>
+          <div class="flex-col gap-8 md:flex md:flex-row">
+            <VerityShapes />
+            <div class="lg:max-w-2xl md:pl-8">
+              <div class="mb-8">
+                <h2
+                  class="pb-3 mb-5 text-2xl font-medium tracking-tight uppercase border-b text-destiny-light-grey border-destiny-dark-grey"
+                >
+                  Mode
+                </h2>
+                <div class="mb-4">
+                  <VerityModeRadio />
+                </div>
+                <p class="text-destiny-text-grey">
+                  Challenge mode changes the dissected shapes needed for the <span
+                    class="font-bold">Varied Geometry</span
+                  > challenge which usually done in the 2nd round. Shapes are shifted
+                  to the right.
+                </p>
+                <p class="mt-2 text-destiny-text-grey">
+                  Example: <br />
+                  - C S T <br />
+                  - TT CC SS
+                </p>
+              </div>
+              <div class="">
+                <h2
+                  class="pb-3 mb-5 text-2xl font-medium tracking-tight uppercase border-b border-destiny-dark-grey text-destiny-light-grey"
+                >
+                  Instructions
+                </h2>
+                <p class="mb-4 text-destiny-text-grey">
+                  Dissect instructions are represented by a pair of side letter
+                  and shape letter pairs, e.g LT ↔ MS = Left Triangle, Middle
+                  Square.
+                </p>
+                <div id="instruction-display" class="text-xl font-medium"></div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </verity-solver>
+    </div>
+  </div>
+</main>
+
+<script>
+  import qs from "qs";
+  import { solveVerity } from "../lib/verity";
+
+  class VeritySolver extends HTMLElement {
+    $form!: HTMLFormElement | null;
+    $instructionDisplay!: HTMLDivElement | null;
+
+    connectedCallback() {
+      this.$form = this.querySelector("form");
+      this.$instructionDisplay = this.querySelector("#instruction-display");
+
+      this.$form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+      });
+
+      this.handleFormChange();
+
+      this.$form?.addEventListener("change", this.handleFormChange.bind(this));
+    }
+
+    handleFormChange() {
+      if (!this.$form) return;
+
+      const formdata = new FormData(this.$form);
+      const queryString = new URLSearchParams(formdata as any).toString();
+
+      const {
+        inside = [],
+        outside = [],
+        mode = "normal",
+      } = qs.parse(queryString);
+
+      let isChallenge = false;
+      if (mode == "challenge") {
+        isChallenge = true;
+      }
+
+      const instructions = solveVerity(inside, outside, { isChallenge });
+      this.handleInstructions(instructions);
+    }
+
+    handleInstructions(instructions: any[]) {
+      if (!this.$instructionDisplay) return;
+
+      let details = "Invalid Shapes";
+
+      if (instructions.length > 0) {
+        details = instructions
+          .map(
+            (swap) => `${swap.symbol}${swap.from} ↔ ${swap.swapWith}${swap.to}`
+          )
+          .join("\n")
+          .toUpperCase();
+      }
+
+      this.$instructionDisplay.innerText = details;
+    }
+  }
+
+  customElements.define("verity-solver", VeritySolver);
+</script>
