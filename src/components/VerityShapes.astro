@@ -1,0 +1,126 @@
+---
+import ShapeRadio from "./ShapeRadio.astro";
+
+import IconCircle from "../assets/icon-circle.svg";
+import IconSquare from "../assets/icon-square.svg";
+import IconTriangle from "../assets/icon-triangle.svg";
+
+import IconSphere from "../assets/icon-sphere.svg";
+import IconCube from "../assets/icon-cube.svg";
+import IconPyramid from "../assets/icon-Pyramid.svg";
+
+import IconCone from "../assets/icon-cone.svg";
+import IconCylinder from "../assets/icon-cylinder.svg";
+import IconPrism from "../assets/icon-Prism.svg";
+---
+
+<div
+  class="flex flex-wrap flex-none gap-8 mx-auto mb-12 md:flex-col lg:flex-row md:mx-0 xl:flex-row md:w-max"
+>
+  <div>
+    <h2
+      class="pb-3 mb-5 text-2xl font-medium tracking-tight uppercase border-b text-destiny-light-grey border-destiny-dark-grey"
+    >
+      Inside
+    </h2>
+
+    <div class="grid grid-flow-col grid-cols-3 grid-rows-3 gap-3">
+      <ShapeRadio label="C" id="l-c" name="inside[0]" value="c" checked>
+        <IconCircle />
+      </ShapeRadio>
+      <ShapeRadio label="S" id="l-s" name="inside[0]" value="s">
+        <IconSquare />
+      </ShapeRadio>
+      <ShapeRadio label="T" id="l-t" name="inside[0]" value="t">
+        <IconTriangle />
+      </ShapeRadio>
+
+      <ShapeRadio label="C" id="m-c" name="inside[1]" value="c">
+        <IconCircle />
+      </ShapeRadio>
+      <ShapeRadio label="S" id="m-s" name="inside[1]" value="s" checked>
+        <IconSquare />
+      </ShapeRadio>
+      <ShapeRadio label="T" id="m-t" name="inside[1]" value="t">
+        <IconTriangle />
+      </ShapeRadio>
+
+      <ShapeRadio label="C" id="r-c" name="inside[3]" value="c">
+        <IconCircle />
+      </ShapeRadio>
+      <ShapeRadio label="S" id="r-s" name="inside[3]" value="s">
+        <IconSquare />
+      </ShapeRadio>
+      <ShapeRadio label="T" id="r-t" name="inside[3]" value="t" checked>
+        <IconTriangle />
+      </ShapeRadio>
+    </div>
+  </div>
+
+  <div>
+    <h2
+      class="pb-3 mb-5 text-2xl font-medium tracking-tight uppercase border-b text-destiny-light-grey border-destiny-dark-grey"
+    >
+      Outside
+    </h2>
+
+    <div class="grid grid-flow-col grid-cols-3 grid-rows-6 gap-3">
+      <ShapeRadio label="CC" id="lo-cc" name="outside[0]" value="cc" checked>
+        <IconSphere />
+      </ShapeRadio>
+      <ShapeRadio label="SS" id="lo-ss" name="outside[0]" value="ss">
+        <IconCube />
+      </ShapeRadio>
+      <ShapeRadio label="TT" id="lo-tt" name="outside[0]" value="tt">
+        <IconPyramid />
+      </ShapeRadio>
+      <ShapeRadio label="CS" id="lo-cs" name="outside[0]" value="cs">
+        <IconCylinder />
+      </ShapeRadio>
+      <ShapeRadio label="CT" id="lo-ct" name="outside[0]" value="ct">
+        <IconCone />
+      </ShapeRadio>
+      <ShapeRadio label="ST" id="lo-st" name="outside[0]" value="st">
+        <IconPrism />
+      </ShapeRadio>
+
+      <ShapeRadio label="CC" id="mo-cc" name="outside[1]" value="cc">
+        <IconSphere />
+      </ShapeRadio>
+      <ShapeRadio label="SS" id="mo-ss" name="outside[1]" value="ss" checked>
+        <IconCube />
+      </ShapeRadio>
+      <ShapeRadio label="TT" id="mo-tt" name="outside[1]" value="tt">
+        <IconPyramid />
+      </ShapeRadio>
+      <ShapeRadio label="CS" id="mo-cs" name="outside[1]" value="cs">
+        <IconCylinder />
+      </ShapeRadio>
+      <ShapeRadio label="CT" id="mo-ct" name="outside[1]" value="ct">
+        <IconCone />
+      </ShapeRadio>
+      <ShapeRadio label="ST" id="mo-st" name="outside[1]" value="st">
+        <IconPrism />
+      </ShapeRadio>
+
+      <ShapeRadio label="CC" id="ro-cc" name="outside[2]" value="cc">
+        <IconSphere />
+      </ShapeRadio>
+      <ShapeRadio label="SS" id="ro-ss" name="outside[2]" value="ss">
+        <IconCube />
+      </ShapeRadio>
+      <ShapeRadio label="TT" id="ro-tt" name="outside[2]" value="tt" checked>
+        <IconPyramid />
+      </ShapeRadio>
+      <ShapeRadio label="CS" id="ro-cs" name="outside[2]" value="cs">
+        <IconCylinder />
+      </ShapeRadio>
+      <ShapeRadio label="CT" id="ro-ct" name="outside[2]" value="ct">
+        <IconCone />
+      </ShapeRadio>
+      <ShapeRadio label="ST" id="ro-st" name="outside[2]" value="st">
+        <IconPrism />
+      </ShapeRadio>
+    </div>
+  </div>
+</div>
